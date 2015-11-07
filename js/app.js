@@ -7,7 +7,15 @@ $(document).ready(function(){
 		var randomNum = Math.floor(Math.random() * 100 + 1);
 		console.log(randomNum);
 
-	}
+	};
+
+	var guessCheck = function () {
+		console.log("Checking number guessed against random number");
+		var guessDiff = abs($('#userGuess').val()-randomNum);
+		if (guessDiff <= 10) {
+			$('#feedback').html("Very Hot!");
+		}
+	};
 
 	newGame();
 
@@ -23,17 +31,16 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
 
-  	$('.new').on('click', function() {
-  		console.log("Clicks button");
-  		newGame();
-  	});
-
-  	$('#guessButton').on('click', function() {
+  	$('.button').on('click', function() {
 		console.log("Starts game");
 		console.log($('#userGuess').val());
 	});
 
-  	
+  	$('.new').on('click', function() {
+  		console.log("Clicks New Game button");
+  		newGame();
+  	});
+
 
 });
 
