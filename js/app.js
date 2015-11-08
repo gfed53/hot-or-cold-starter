@@ -1,16 +1,20 @@
 
 $(document).ready(function(){
 	console.log("Hello World");
-	var currentRand;
+	var currentRand; //Declares variable for randNum globally so it can be used outside of newGame
 	console.log(currentRand);
-	var guessCount = 0;
+	var guessCount = 0; //Assigns variable to #count html
 
 	var newGame = function() {
 		console.log("Running game");
 		$('#feedback').html("Make your Guess!");
-		var randomNum = Math.floor(Math.random() * 100 + 1);
+		$('#userGuess').val("");
+		$('#count').html(0);
+		guessCount = 0;
+		$('#guessList').children().remove();
+		var randomNum = Math.floor(Math.random() * 100 + 1); //This is declared once per new game, hence it is declared locally within newGame
 		console.log(randomNum);
-		currentRand = randomNum; //Or we can do 'return randomNum'?
+		currentRand = randomNum; //Or can we just do 'return randomNum'?
 
 	};
 
@@ -31,6 +35,7 @@ $(document).ready(function(){
 		} else if(guessDiff > 40){
 			$('#feedback').html("Icy!");
 		}
+		$('#guessList').append("<li>" + $('#userGuess').val() + "</li>");
 	};
 
 	newGame();
