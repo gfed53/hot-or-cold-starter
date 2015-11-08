@@ -3,7 +3,7 @@ $(document).ready(function(){
 	console.log("Hello World");
 	var currentRand;
 	console.log(currentRand);
-	var guessCount = $('#count').html();
+	var guessCount = 0;
 
 	var newGame = function() {
 		console.log("Running game");
@@ -58,6 +58,7 @@ $(document).ready(function(){
 			console.log("Good number");
 			guessCheck();
 			guessCount += 1
+			$('#count').html(guessCount);
 		}
 		else {
 			alert("Must be a number from 1 to 100, and a whole number!");
