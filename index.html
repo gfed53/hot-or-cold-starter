@@ -47,7 +47,7 @@
 			</div>
 
 			<!-- logo text -->
-			<h1>HOT or COLD</h1>
+			<h1>HOT or COLD</h1> <!--Level #-->
 
 		</header>
 
@@ -55,12 +55,13 @@
 			
 			<h2 id="feedback">Make your Guess!</h2>
 
-			<form>
+			<!-- <form> -->
 				<input type="text" name="userGuess" id="userGuess" class="text" maxlength="3" autocomplete="off" placeholder="Enter your Guess" required/>
-      			<input type="submit" id="guessButton" class="button" name="submit" value="Guess"/>
-			</form>
+      			<input type="button" id="guessButton" class="button" name="submit" value="Guess"/>
+      			<!-- Make this a continue button -->
+			<!-- </form> -->
 			
-      		<p>Guess #<span id="count">0</span>!</p>
+      		<p>Guess #<span id="count">0</span>!</p> <!--Limit # of guesses-->
 			
 			<ul id="guessList" class="guessBox clearfix">
 

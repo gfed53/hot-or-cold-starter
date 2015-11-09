@@ -30,7 +30,7 @@ $(document).ready(function(){
 		console.log(guessDiff);
 		//--Gives feedback
 		if(guessDiff === 0) {
-			$('#feedback').html("You Win! Click '+New Game' to start a new game!");
+			$('#feedback').html("You Win!");
 		} else if(guessDiff <= 10 && guessDiff >= 1) {
 			$('#feedback').html("Very Hot!");
 		} else if(guessDiff > 10 && guessDiff <= 20){
@@ -81,7 +81,7 @@ $(document).ready(function(){
 		} else {
 			alert("Must be a number from 1 to 100, and a whole number!");
 		}
-		
+		$('#userGuess').val("");
 	});
   	//--Button clicked to start a new game
   	$('.new').on('click', function() {
@@ -89,7 +89,7 @@ $(document).ready(function(){
   			newGame();
   	});
 
-
+//Create new levels
 });
 
 
