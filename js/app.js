@@ -3,9 +3,10 @@ $(document).ready(function(){
 	console.log("Hello World");
 	//--Declares variable for randNum globally so it can be used outside of newGame
 	var currentRand;
-	var limit = 100;
+	
 	console.log(currentRand);
-	//--Assigns variable to #count html
+	//--Assigns variables
+	var limit = 100;
 	var guessCount = 0; 
 	var winsCount = 0;
 	var levelCount = 1;
@@ -20,6 +21,7 @@ $(document).ready(function(){
 		guessCount = 0;
 		$('#guessList').children().remove();
 		$('#continueButton').hide();
+		$('#guessButton').show();
 		//--This random number is declared once per new game, hence it is declared locally within newGame
 		var randomNum = Math.floor(Math.random() * limit + 1); 
 		console.log(randomNum);
@@ -38,12 +40,15 @@ $(document).ready(function(){
 			$('#feedback').html("You Win!");
 			winsCount += 1;
 			$('#wins').html(winsCount);
+			$('#guessButton').hide();
 			$('#continueButton').show();
 			
 			if (winsCount === 5 || guessCount <= 10) {
 				levelCount += 1;
 				$('#level').html(levelCount);
 				limit += 50;
+				winsCount = 0;
+				$('#wins').html(0);
 			}
 			$('#continueButton').on('click', function(e){
 				e.preventDefault();
@@ -73,7 +78,7 @@ $(document).ready(function(){
 		console.log($('#userGuess').val());
 		console.log(e.isDefaultPrevented());
 		//--Makes sure guessed number is a whole number from 1 to 100
-		if($('#userGuess').val() <= 100 && $('#userGuess').val() > 0 && $('#userGuess').val() % 1 === 0) {
+		if($('#userGuess').val() <= limit && $('#userGuess').val() > 0 && $('#userGuess').val() % 1 === 0) {
 			console.log("Good number");
 			//--Runs guessCheck()
 			guessCheck();
@@ -108,7 +113,11 @@ $(document).ready(function(){
   	//--Button clicked to start a new game
   	$('.new').on('click', function() {
   		console.log("Clicks New Game button");
-  			startGame();
+  		limit = 100;
+		guessCount = 0; 
+		winsCount = 0;
+		levelCount = 1;
+  		startGame();
   	});
 
 //Create new levels
