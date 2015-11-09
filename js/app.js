@@ -2,11 +2,14 @@
 $(document).ready(function(){
 	console.log("Hello World");
 	//--Declares variable for randNum globally so it can be used outside of newGame
-	var currentRand; 
+	var currentRand;
+	var limit = 100;
 	console.log(currentRand);
 	//--Assigns variable to #count html
 	var guessCount = 0; 
 	var winsCount = 0;
+	var levelCount = 1;
+
 
 	var startGame = function() {
 		console.log("Running game");
@@ -16,8 +19,9 @@ $(document).ready(function(){
 		$('#count').html(0);
 		guessCount = 0;
 		$('#guessList').children().remove();
+		$('#continueButton').hide();
 		//--This random number is declared once per new game, hence it is declared locally within newGame
-		var randomNum = Math.floor(Math.random() * 100 + 1); 
+		var randomNum = Math.floor(Math.random() * limit + 1); 
 		console.log(randomNum);
 		currentRand = randomNum; 
 		//--Or can we just do 'return randomNum'? This might result in a conflict since newGame() would produce ANY random number, not the specific number selected per game?
@@ -34,12 +38,17 @@ $(document).ready(function(){
 			$('#feedback').html("You Win!");
 			winsCount += 1;
 			$('#wins').html(winsCount);
+			$('#continueButton').show();
+			
+			if (winsCount === 5 || guessCount <= 10) {
+				levelCount += 1;
+				$('#level').html(levelCount);
+				limit += 50;
+			}
 			$('#continueButton').on('click', function(e){
 				e.preventDefault();
 				startGame();
 			});
-
-			// if ()
 		} else if(guessDiff <= 5 && guessDiff >= 1) {
 			$('#feedback').html("Very Hot!");
 		} else if(guessDiff > 6 && guessDiff <= 10){
@@ -72,7 +81,7 @@ $(document).ready(function(){
 			guessCount += 1
 			$('#count').html(guessCount);
 		} else {
-			alert("Must be a number from 1 to 100, and a whole number!");
+			alert("Must be a number from 1 to " + limit + ", and a whole number!");
 		}
 		$('#userGuess').val("");
 	});
