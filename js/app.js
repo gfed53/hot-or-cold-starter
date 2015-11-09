@@ -31,13 +31,13 @@ $(document).ready(function(){
 		//--Gives feedback
 		if(guessDiff === 0) {
 			$('#feedback').html("You Win!");
-		} else if(guessDiff <= 10 && guessDiff >= 1) {
+		} else if(guessDiff <= 5 && guessDiff >= 1) {
 			$('#feedback').html("Very Hot!");
-		} else if(guessDiff > 10 && guessDiff <= 20){
-			$('#feedback').html("Warm!");
-		} else if(guessDiff >20 && guessDiff <= 30){
-			$('#feedback').html("Cool");
-		} else if(guessDiff >30 && guessDiff <= 40){
+		} else if(guessDiff > 6 && guessDiff <= 10){
+			$('#feedback').html("Hot!");
+		} else if(guessDiff >11 && guessDiff <= 20){
+			$('#feedback').html("Warm");
+		} else if(guessDiff >21 && guessDiff <= 40){
 			$('#feedback').html("Cold!");
 		} else if(guessDiff > 40){
 			$('#feedback').html("Icy!");
