@@ -6,8 +6,9 @@ $(document).ready(function(){
 	console.log(currentRand);
 	//--Assigns variable to #count html
 	var guessCount = 0; 
+	var winsCount = 0;
 
-	var newGame = function() {
+	var startGame = function() {
 		console.log("Running game");
 		//--Clears past game data to make new slate
 		$('#feedback').html("Make your Guess!");
@@ -31,6 +32,14 @@ $(document).ready(function(){
 		//--Gives feedback
 		if(guessDiff === 0) {
 			$('#feedback').html("You Win!");
+			winsCount += 1;
+			$('#wins').html(winsCount);
+			$('#continueButton').on('click', function(e){
+				e.preventDefault();
+				startGame();
+			});
+
+			// if ()
 		} else if(guessDiff <= 5 && guessDiff >= 1) {
 			$('#feedback').html("Very Hot!");
 		} else if(guessDiff > 6 && guessDiff <= 10){
@@ -46,24 +55,8 @@ $(document).ready(function(){
 		$('#guessList').append("<li>" + $('#userGuess').val() + "</li>");
 	};
 
-	//--Running new game on page load
-	newGame();
-	console.log(currentRand);
 
-
-	/*--- Display information modal box ---*/
-  	$(".what").click(function(){
-    	$(".overlay").fadeIn(1000);
-
-  	});
-
-  	/*--- Hide information modal box ---*/
-  	$("a.close").click(function(){
-  		$(".overlay").fadeOut(1000);
-  	});
-
-  	//--Submits guessed number, 
-  	$('.button').on('click', function(e) {
+  	$('#guessButton').val("Guess").on('click', function(e) {
   		console.log(e.isDefaultPrevented());
   		//--Prevents link behavior (reloading page)
   		e.preventDefault();
@@ -83,10 +76,30 @@ $(document).ready(function(){
 		}
 		$('#userGuess').val("");
 	});
+
+	//--Running new game on page load
+	startGame();
+	console.log(currentRand);
+
+
+	/*--- Display information modal box ---*/
+  	$(".what").click(function(){
+    	$(".overlay").fadeIn(1000);
+
+  	});
+
+  	/*--- Hide information modal box ---*/
+  	$("a.close").click(function(){
+  		$(".overlay").fadeOut(1000);
+  	});
+
+  	//--Submits guessed number, 
+  	
+
   	//--Button clicked to start a new game
   	$('.new').on('click', function() {
   		console.log("Clicks New Game button");
-  			newGame();
+  			startGame();
   	});
 
 //Create new levels
