@@ -11,6 +11,21 @@ $(document).ready(function(){
 	var winsCount = 0;
 	var levelCount = 1;
 
+	//Creating a function that checks if number guessed was already previously guessed
+	// var checkRepeat = function() { 
+	// 	console.log("runs");
+	// 	$('#guessList li').each(function(index){
+	// 		console.log("One guess.");
+	// 			if($('#userGuess').val() === index){
+	// 				alert("You already picked that number.");
+	// 			} else {
+	// 				return false;
+	// 			}
+	// 		}
+	// 	);	
+	// };
+
+
 
 	var startGame = function() {
 		console.log("Running game");
@@ -49,7 +64,14 @@ $(document).ready(function(){
 				limit += 50;
 				winsCount = 0;
 				$('#wins').html(0);
+			} else if(guessCount > 20 && levelCount >= 2) {
+				levelCount -= 1;
+				$('#level').html(levelCount);
+				limit -= 50;
+				winsCount = 0;
+				$('#wins').html(0);
 			}
+
 			$('#continueButton').on('click', function(e){
 				e.preventDefault();
 				startGame();
@@ -66,7 +88,7 @@ $(document).ready(function(){
 			$('#feedback').html("Icy!");
 		}
 		//--Adds chosen number to #guessList
-		$('#guessList').append("<li>" + $('#userGuess').val() + "</li>");
+		$('#guessList').prepend("<li>" + $('#userGuess').val() + "</li>"); //Try prepend?
 	};
 
 
@@ -79,8 +101,7 @@ $(document).ready(function(){
 		console.log(e.isDefaultPrevented());
 		//--Makes sure guessed number is a whole number from 1 to 100
 		if($('#userGuess').val() <= limit && $('#userGuess').val() > 0 && $('#userGuess').val() % 1 === 0) {
-			console.log("Good number");
-			//--Runs guessCheck()
+			// checkRepeat();
 			guessCheck();
 			//--Increases guessCount by 1, updates Guess # html
 			guessCount += 1
@@ -90,6 +111,8 @@ $(document).ready(function(){
 		}
 		$('#userGuess').val("");
 	});
+
+
 
 	//--Running new game on page load
 	startGame();
