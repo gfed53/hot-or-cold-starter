@@ -11,7 +11,21 @@ $(document).ready(function(){
 	var winsCount = 0;
 	var levelCount = 1;
 
-	//Creating a function that checks if number guessed was already previously guessed
+	// var levelData = {
+	// 	levelCount = 1,
+	// 	limit: 100,
+	// 	guessCount: 0,
+	// 	winsCount = 0,
+	// 	levelChange = function(x) {
+	// 		this.levelCount += (1*x);
+	// 		$('#level').html(levelCount);
+	// 		limit += (50*x);
+	// 		winsCount = 0;
+	// 		$('#wins').html(0);
+	// 	}
+	// }
+
+	// Creating a function that checks if number guessed was already previously guessed
 	// var checkRepeat = function() { 
 	// 	console.log("runs");
 	// 	$('#guessList li').each(function(index){
@@ -116,6 +130,7 @@ $(document).ready(function(){
 
 	//--Running new game on page load
 	startGame();
+	// checkRepeat();
 	console.log(currentRand);
 
 
